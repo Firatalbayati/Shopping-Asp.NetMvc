@@ -1,0 +1,47 @@
+﻿@model TulipShopping.Models.Member
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <div class="col-md-12">
+        <br />
+        <div><h4 class="alert-danger">@ViewBag.Basarisiz</h4></div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr class="new1" />
+                <br />
+                <h4 class="alert-danger">@ViewBag.HataErorr</h4>
+
+                <div class="form-group">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="UserName">اسم المستخدم</label>
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "اسم المستخدم", @required = "" } })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="Password">كلمه السر</label>
+                    <div class="col-md-12">
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "كلمه السر", @required = "" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="تسجيل الدخول" class="btn btn-primary" />
+                        @Html.ActionLink("الرجوع الى الصفحة الرئيسية", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-warning", @role = "button" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</body>

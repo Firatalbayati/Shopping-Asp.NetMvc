@@ -1,0 +1,79 @@
+﻿@model IEnumerable<TulipShopping.Models.Notice>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout .cshtml";
+}
+
+
+<style>
+    h2 {
+        color: white;
+        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px blue;
+    }
+</style>
+
+
+
+<html dir="rtl">
+
+<div class="text-center">
+    <br />
+    <h2>Tulip Shopping</h2>
+</div>
+<br />
+
+<div><h4 class="alert-danger">@ViewBag.Basarisiz</h4></div>
+
+<nav>
+    <div>
+        <h1>
+            @Html.ActionLink("إضافة ملاحظة جديدة", "Create", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })
+        </h1>
+    </div>
+</nav>
+<br />
+
+
+<div class=" table-responsive form-group bg-white shadow-lg p-3 mb-5 bg-white rounded-lg ">
+
+    <table class="table table-bordered">
+
+        <tr>
+            <th>المقدمة</th>
+            <th>الملاحظة</th>
+            <th>تعديل الملاحظة</th>
+            <th>تفاصيل الملاحظة</th>
+            <th>حذف الملاحظة</th>
+        </tr>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <span class="d-inline-block text-truncate" style="max-width: 150px;">
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </span>
+                    </td>
+                    <td>
+                        <p>@Html.DisplayText(item.Text.Substring(0, 30))   الملاحظه طويله يرجى قراته من التفاصيل  ... </p>  
+                    </td>
+                    <td>
+                        @Html.ActionLink("تعديل الملاحظة", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("تفاصيل الملاحظة", "Details", new { id = item.Id }, new { @class = "btn btn-warning" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("حذف الملاحظة", "Delete", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('هل أنت متأكد أنك تريد حذف الملاحظة؟')" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>
+
+</html>

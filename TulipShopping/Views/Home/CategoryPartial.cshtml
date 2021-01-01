@@ -1,0 +1,181 @@
+﻿@model IEnumerable<TulipShopping.Models.AdminTable>
+
+@{
+    Layout = null;
+}
+
+
+
+<style>
+    /* Global Button */
+    .transparent_btn {
+        display: inline-block;
+        padding: 6px 10px;
+        color: #FFF;
+        border: 1px solid #FFF;
+        text-decoration: none;
+        font-size: 18px;
+        line-height: 120%;
+        background-color: rgba(255,255,255, 0);
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        -webkit-transition: background-color 300ms ease;
+        -moz-transition: background-color 300ms ease;
+        transition: background-color 300ms ease;
+        cursor: pointer;
+    }
+
+        /* Green Button */
+        .transparent_btn.green {
+            color: #FF45AA;
+            /*border-color: #FF45AA;*/
+        }
+
+            .transparent_btn.green:hover {
+                background-color: rgba(134, 236, 147, 0.3);
+            }
+
+
+
+    .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+    }
+
+    .text {
+        color: #f2f2f2;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+    .dot {
+        transition: background-color 0.6s ease;
+    }
+
+    .active {
+        background-color: #717171;
+    }
+
+    .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+
+    .img {
+        -webkit-filter: blur(5px);
+    }
+
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .cell-breakWord {
+        word-wrap: break-word;
+        max-width: 1px;
+    }
+</style>
+
+
+
+<div class="row text-center" dir="rtl">
+    <div class="col-lg-12">
+        <div class="slideshow-container">
+
+            <div class="mySlides fadee">
+                <img class="img" src="~/Upload/T.JPG" style="width:100%">
+            </div>
+            <div class="mySlides fadee">
+                <img class="img" src="~/Upload/Z.JPG" style="width:100%">
+            </div>
+            <div class="mySlides fadee">
+                <img class="img" src="~/Upload/US.JPG" style="width:100%">
+            </div>
+            <div class="mySlides fadee">
+                <img class="img" src="~/Upload/N.JPG" style="width:100%">
+            </div>
+            <div class="mySlides fadee">
+                <img class="img" src="~/Upload/F.JPG" style="width:100%">
+            </div>
+            <div class="mySlides fadee">
+                <img class="img" src="~/Upload/MG.JPG" style="width:100%">
+            </div>
+            <div class="mySlides fadee">
+                <img class="img" src="~/Upload/M.JPG" style="width:100%">
+            </div>
+            <div class="mySlides fadee">
+                <img class="img" src="~/Upload/MV.JPG" style="width:100%">
+            </div>
+            <div class="mySlides fadee">
+                <img class="img" src="~/Upload/P.JPG" style="width:100%">
+            </div>
+
+            <br>
+
+            <div style="text-align:center">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+
+        <h4 class="text-center" style="color: #000000;">قم باختيار احد الفئات</h4>
+        <hr class="new1" />
+        <div><h4 class="alert-danger">@ViewBag.Basarisiz</h4></div>
+        <div class="w3-row-padding">
+            @foreach (var item in Model)
+            {
+
+                <div class="w3-third">
+                    <p><a href="/Home/Index/@item.Id" class="transparent_btn green">@Html.Raw(item.KategoriAdi)</a></p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+</script>

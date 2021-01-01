@@ -1,0 +1,81 @@
+﻿@model TulipShopping.Models.AdminTable
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout .cshtml";
+}
+
+
+<style>
+    hr.new1 {
+        border: 0;
+        height: 2px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(9, 84, 132), rgba(0, 0, 0, 0));
+    }
+</style>
+
+<html dir="rtl">
+<br />
+<h2>تفاصيل الفئة</h2>
+<div><h4 class="alert-danger">@ViewBag.Basarisiz</h4></div>
+<div>
+
+    <hr class="new1" />
+    <br />
+    <dl class="dl-horizontal">
+        <dd>
+            <img src="@Model.KategoriFoto" class="rounded-circle" width="130" height="130" />
+            <h4></h4>
+        </dd>
+        <dd>
+
+            <h4>
+                اسم الفئة&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
+                @Html.DisplayFor(model => model.KategoriAdi)
+            </h4>
+        </dd>
+        <dd>
+            <h4>
+                دولار&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                @Html.DisplayFor(model => model.Dolar)
+            </h4>
+        </dd>
+        <dd>
+            <h4>
+                دينار عراقي&nbsp;&nbsp;:
+                @Html.DisplayFor(model => model.Dinar)
+            </h4>
+        </dd>
+        <dd>
+            <h4>
+                مبلغ التحويل&nbsp;&nbsp;:
+                @Html.DisplayFor(model => model.TransferMiktari)
+            </h4>
+
+        </dd>
+        <dd>
+            <h4>
+                كاركو&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                @Html.DisplayFor(model => model.Kargo)
+            </h4>
+        </dd>
+        <dd>
+            <h4>
+                شحن&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                @Html.DisplayFor(model => model.Nakliye)
+            </h4>
+        </dd>
+        <dd>
+            <h4>
+                المضاف&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                @Html.DisplayFor(model => model.Katki)
+            </h4>
+        </dd>
+    </dl>
+</div>
+<br />
+<p>
+    @Html.ActionLink("تعديل", "Edit", new { id = Model.Id }, new { @class = "btn btn-success" })
+    @Html.ActionLink("رجوع الى الصفحة الرئيسية", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-warning", @role = "button" })
+</p>
+</html>

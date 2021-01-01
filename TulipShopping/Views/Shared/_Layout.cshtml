@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/amiri.css">
+
+</head>
+
+
+
+
+
+<body>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        /*Up Button*/
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 15px;
+            right: 22px;
+            z-index: 99;
+            font-size: 15px;
+            border: none;
+            outline: none;
+            background-color: #FF45AA;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+            #myBtn:hover {
+                background-color: #555;
+            }
+    </style>
+
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:black">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand text-center" href="~/Member/Login">
+                    <img src="~/Upload/TulipLogo.jpg" width="70" height="30" class="d-inline-block align-top">
+                </a>
+                @Html.ActionLink("   Tulip Shopping", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", style = "color: #FFFFFF;" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="dropdown-item" style="color: #ffffff" href="~/Home/Index">الصفحة الرئيسية<span class="sr-only">(current)</span></a></li>
+                    <li><a class="dropdown-item" style="color: #ffffff" href="~/Home/Notice">الملاحظات<span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content" dir="rtl">
+
+        <div dir="rtl">
+            <br />
+
+            @RenderBody()
+
+        </div>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    </div>
+    <br />
+    <br />
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+
+    <script>
+        //Get the button
+        var mybutton = document.getElementById("myBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</body>
+</html>
+

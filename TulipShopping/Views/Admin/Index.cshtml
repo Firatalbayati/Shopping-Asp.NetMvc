@@ -1,0 +1,97 @@
+﻿@model IEnumerable<TulipShopping.Models.AdminTable>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout .cshtml";
+}
+
+
+<style>
+    h2 {
+        color: white;
+        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px blue;
+    }
+</style>
+
+
+
+<html dir="rtl">
+
+<div class="text-center">
+    <br />
+    <h2>Tulip Shopping</h2>
+</div>
+<br />
+
+<div><h4 class="alert-danger">@ViewBag.Basarisiz</h4></div>
+
+<nav>
+    <div>
+        <h1>
+            @Html.ActionLink("إضافة فئة جديدة", "Create", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })
+        </h1>
+    </div>
+</nav>
+<br />
+
+<div class=" table-responsive form-group bg-white shadow-lg p-3 mb-5 bg-white rounded-lg ">
+
+    <table class="table table-bordered text-center">
+        <tr>
+            <th>الصورة</th>
+            <th>اسم الفئة</th>
+            <th>دولار</th>
+            <th>دينار عراقي</th>
+            <th>مبلغ التحويل</th>
+            <th>كاركو</th>
+            <th>شحن</th>
+            <th>المضاف</th>
+            <th>تعديل الفئة</th>
+            <th>تفاصيل الفئة</th>
+            <th>حذف الفئة</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img width="120" height="90" style="border-radius: 5px;" src="@item.KategoriFoto" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KategoriAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dolar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dinar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransferMiktari)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kargo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nakliye)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Katki)
+                </td>
+                <td>
+                    @Html.ActionLink("تعديل الفئة", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
+                </td>
+                <td>
+                    @Html.ActionLink("تفاصيل الفئة", "Details", new { id = item.Id }, new { @class = "btn btn-warning" })
+                </td>
+                <td>
+                    @Html.ActionLink("حذف الفئة", "Delete", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('هل أنت متأكد أنك تريد حذف الفئة؟')" })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
+
+</html>

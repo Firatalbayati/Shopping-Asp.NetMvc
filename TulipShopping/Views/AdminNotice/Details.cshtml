@@ -1,0 +1,64 @@
+﻿@model TulipShopping.Models.Notice
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout .cshtml";
+}
+
+<style>
+    hr.new1 {
+        border: 0;
+        height: 2px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(9, 84, 132), rgba(0, 0, 0, 0));
+    }
+
+    /*Makale tablo içinden taşmasın diye ekledik*/
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    /*Makale tablo içinden taşmasın diye ekledik*/
+    .cell-breakWord {
+        word-wrap: break-word;
+        max-width: 1px;
+    }
+</style>
+
+<html dir="rtl">
+<br />
+<h2>تفاصيل الملاحظة</h2>
+<div><h4 class="alert-danger">@ViewBag.Basarisiz</h4></div>
+<hr class="new1" />
+<br />
+
+<div class="text-center">
+    <h4>
+        @Html.DisplayFor(model => model.Title)
+    </h4>
+    <br />
+</div>
+
+
+
+<article>
+    <table>
+        <tr>
+            <td class="cell-breakWord">
+                <div class=" text-center">
+                    <p>@Html.Raw(Model.Text)</p>
+                </div>
+            </td>
+        </tr>
+    </table>
+</article>
+
+
+<br />
+<br />
+<br />
+<p>
+    @Html.ActionLink("تعديل", "Edit", new { id = Model.Id }, new { @class = "btn btn-success" })
+    @Html.ActionLink("رجوع الى الصفحة الرئيسية", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-warning", @role = "button" })
+</p>
+</html>

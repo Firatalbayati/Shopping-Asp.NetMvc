@@ -1,0 +1,64 @@
+﻿@model TulipShopping.Models.AdminTable
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout .cshtml";
+}
+
+<style>
+    hr.new1 {
+        border: 0;
+        height: 2px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(9, 84, 132), rgba(0, 0, 0, 0));
+    }
+</style>
+
+<html dir="rtl">
+<br />
+<h2>تحديث الدولار</h2>
+<div><h4 class="alert-success">@ViewBag.Basarili</h4></div>
+<div><h4 class="alert-danger">@ViewBag.Basarisiz</h4></div>
+@using (Html.BeginForm("Index", "UpdateDolar", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr class="new1" />
+        <br />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Dolar, "دولار", new { @class = "pmtallocated pull-right control-label col-md-2", @dir = "rtl" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Dolar, new { htmlAttributes = new { @class = "form-control " } }) *@
+                <div>
+                    <input type="text" name="Dolar" id="Dolar" class="form-control" required="" size="5" style="text-align:center; " maxlength="4" onChange="testfunc()" onchange="this.value = this.value.replace('.' , ',')" />
+                    <br />
+                </div>
+                @Html.ValidationMessageFor(model => model.Dolar, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="حفظ التحديث" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+</html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<script>
+
+    function testfunc() {
+        var testnr = document.getElementById("test").value;
+        document.getElementById("test").value = testnr.replace('.', ',');
+    }
+
+</script>
+

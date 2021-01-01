@@ -1,0 +1,119 @@
+﻿@model IEnumerable<TulipShopping.Models.AdminTable>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<style>
+
+    th, td {
+        padding: 2px;
+        text-align: center;
+    }
+
+    hr.new1 {
+        border: 0;
+        height: 2px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0), rgba(0, 0, 0, 0));
+    }
+    
+
+     .amiri{font-family: 'Amiri', serif;}
+</style>
+
+<html dir="rtl">
+<div>
+
+    <div><h4 class="alert-danger">@ViewBag.Basarisiz</h4></div>
+
+    <!-- CategoryPartial -->
+    <div>
+        <div>
+            @{
+                Html.RenderAction("CategoryPartial", "Home");
+            }
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div>
+        <h4 class="text-center" style="color: #000000;">عملية حسابية</h4>
+        <hr class="new1" />
+        <table style="width:100%" class="text-center">
+            <tr>
+                <td>
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                    {
+                        <div><h4 class="alert-danger">@ViewBag.Message</h4></div>
+                        <br />
+                        <div class="text-center"><p style="font-size: 19px; color: #FF45AA;">أدخل الليرة التركية للفئة</p></div>
+                        <br />
+                        <center>
+                            <div>
+                                <input type="text" name="tl" id="tl" class="form-control text-center" required="" placeholder="أدخل الليرة التركية هنا مثال 100" size="5" style="text-align:center; border-color: #FF45AA;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="6" />
+                                <br />
+                            </div>
+                        </center>
+                        <table style="width:100%" class="text-center">
+                            <tr>
+                                <td>
+                                    <div class="col-md-offset-2 ">
+                                        <input type="submit" value="الناتج" class="btn btn-primary" style="background-color: #FF45AA; border-color:#FF45AA;" />
+                                    </div>
+                                </td>
+                                <td>
+                                    @if (@ViewBag.SonucMesage == null)
+                                    {
+                                        <h3 style="color:#EAECEE;"> دع  0,000 </h3>
+                                    }
+                                    else
+                                    {
+                                        <h3 style="color:#000000;">@ViewBag.SonucMesage </h3>
+                                    }
+
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </td>
+                <td>
+                    @if (Model != null)
+                    {
+                        <div>
+                            @foreach (var item in Model)
+                            {
+                                if (item.KategoriAdi.Length > 14)
+                                {
+                                    <div><h4 style="color: #FF45AA">@Html.Raw(item.KategoriAdi.Substring(0, 14)) ...</h4> </div>
+                                }
+                                else
+                                {
+                                    <div class="text-center"><h4 style="color: #FF45AA; ">@item.KategoriAdi</h4></div>
+                                }
+                                <br />
+
+                                <div class="text-center"><img width="120" height="90" style="border-radius: 5px;" src="@item.KategoriFoto" /></div>
+                            }
+                        </div>
+                    }
+                </td>
+            </tr>
+        </table>
+        <br />
+        <div>
+            @{
+                Html.RenderAction("NoticePartial", "Home");
+            }
+        </div>
+    </div>
+</div>
+
+</html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

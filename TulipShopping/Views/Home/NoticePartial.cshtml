@@ -1,0 +1,58 @@
+﻿@model IEnumerable<TulipShopping.Models.Notice>
+
+
+@{
+    Layout = null;
+}
+
+<style>
+
+
+    hr.new1 {
+        border: 0;
+        height: 2px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0), rgba(0, 0, 0, 0));
+    }
+
+
+    .amiri {
+        font-family: 'Amiri', serif;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .cell-breakWord {
+        word-wrap: break-word;
+        max-width: 1px;
+    }
+</style>
+
+<article>
+    <table>
+        <tr>
+            <td class="cell-breakWord">
+                <div class=" row text-center" dir="rtl">
+                    <div class="col-lg-12">
+                        <div><h4 class="alert-danger">@ViewBag.Basarisiz</h4></div>
+
+                        @foreach (var item in Model)
+                        {
+                            <br />
+                            <h4 class=" text-center" style="color: #000000;">@item.Title</h4>
+                            <hr class="new1"/>
+                            <br />
+                            <p class="text-center">
+                                @Html.Raw(item.Text)
+                            </p>
+                        }
+
+                    </div>
+                    <br />
+                </div>
+            </td>
+        </tr>
+    </table>
+</article>

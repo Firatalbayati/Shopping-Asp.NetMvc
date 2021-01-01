@@ -1,0 +1,62 @@
+﻿@model TulipShopping.Models.Notice
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout .cshtml";
+}
+
+<style>
+    hr.new1 {
+        border: 0;
+        height: 2px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(9, 84, 132), rgba(0, 0, 0, 0));
+    }
+</style>
+
+
+<html dir="rtl">
+
+<br />
+<h2>تعديل الفئة</h2>
+<div><h4 class="alert-danger">@ViewBag.Basarisiz</h4></div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr class="new1" />
+        <br />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title, "المقدمة", new { @class = "pmtallocated pull-right control-label col-md-2", @dir = "rtl" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Text, "الملاحظة", new { @class = "pmtallocated pull-right control-label col-md-2", @dir = "rtl" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Text, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+        </div>
+    </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="حفظ التغييرات" class="btn btn-primary" />
+                @Html.ActionLink("رجوع الى الصفحة الرئيسية", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-warning", @role = "button" })
+            </div>
+        </div>
+    </div>
+}
+</html>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
